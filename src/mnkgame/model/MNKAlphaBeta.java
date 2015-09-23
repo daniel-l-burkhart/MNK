@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * MNK method for Alpha-Beta pruning.
- * 
+ *
  * @author jcchurch
  * @version Fall 2015
  */
@@ -12,7 +12,7 @@ public class MNKAlphaBeta {
 
 	/**
 	 * Returns the minimax'd payoff of a board state.
-	 * 
+	 *
 	 * @param aBoard
 	 *            the current game board
 	 * @param myMark
@@ -31,31 +31,35 @@ public class MNKAlphaBeta {
 	public static int alphabetaIterativeDeepening(MNKGame aBoard, Mark myMark, int mindepth, int maxdepth,
 			boolean maxNode) {
 
-		// TODO: Finish Alpha-Beta with iterative deepening
+
 		return -1;
 	}
 
 	private static int alphaBetaRecursive(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
 			boolean maxNode) {
 
-		// TODO: Finish Alpha-Beta Recursive
-		
+		/*if (maxNode){
+			for(int move: aBoard.getMoves()){
+
+			}
+		}*/
+
 		return -1;
 	}
 
 	private static int alphaBetaMinNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
 			ArrayList<Integer> moves) {
-		
+
 		// TODO: Finish Alpha-Beta for Min Nodes
-		
+
 		return -1;
 	}
 
 	private static int alphaBetaMaxNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
 			ArrayList<Integer> moves) {
-		
+
 		// TODO: Finish Alpha-Beta for Max Nodes
-		
+
 		return -1;
 	}
 }

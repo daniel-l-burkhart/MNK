@@ -2,7 +2,7 @@ package mnkgame.model;
 
 /**
  * Our Payoff method
- * 
+ *
  * @author jcchurch
  * @version 1
  */
@@ -11,7 +11,7 @@ public class MNKPayoff {
 	/**
 	 * Given an MNK board, the current player, and the opponent, determines the
 	 * score for this arrangement.
-	 * 
+	 *
 	 * @param aBoard
 	 *            the current game board
 	 * @param myMark
@@ -20,9 +20,17 @@ public class MNKPayoff {
 	 */
 	public static int payoff(MNKGame aBoard, Mark myMark) {
 
-		// TODO: Finish the payoff method
+		Mark myOpponent = MNKPayoff.getOpponent(myMark);
 
-		return -1;
+		if (aBoard.longestLine(myMark) == aBoard.getWinLength()) {
+			return aBoard.longestLine(myMark);
+		}
+		if (aBoard.longestLine(myOpponent) == aBoard.getWinLength()) {
+			return aBoard.longestLine(myOpponent);
+		}
+
+		return (aBoard.longestLine(myMark) - aBoard.longestLine(myOpponent));
+
 	}
 
 	private static Mark getOpponent(Mark myMark) {
