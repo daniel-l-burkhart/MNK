@@ -24,14 +24,6 @@ public class MNKMinimax {
 	 * @return the minimax'd payoff
 	 */
 	public static int minimax(MNKGame aBoard, Mark myMark, int depth, boolean maxNode) {
-		/*
-		 * if maxnode: bestValue = -\infty for child in childnodes: value =
-		 * minimax(child, false, depth-1) bestValue = max(bestValue, value)
-		 * return bestValue else: bestValue = \infty for child in childnodes:
-		 * value = minimax(child, true, depth-1) bestValue = min(bestValue,
-		 * value) return bestValue
-		 *
-		 */
 
 		ArrayList<Integer> moves = aBoard.getMoves();
 

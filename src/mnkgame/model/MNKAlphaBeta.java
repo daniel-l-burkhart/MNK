@@ -31,18 +31,35 @@ public class MNKAlphaBeta {
 	public static int alphabetaIterativeDeepening(MNKGame aBoard, Mark myMark, int mindepth, int maxdepth,
 			boolean maxNode) {
 
-
 		return -1;
 	}
 
 	private static int alphaBetaRecursive(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
 			boolean maxNode) {
 
-		/*if (maxNode){
-			for(int move: aBoard.getMoves()){
+		int value;
 
+		if (maxNode) {
+
+			for (int move : aBoard.getMoves()) {
+				value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, false);
+
+				if (value > alpha) {
+					alpha = value;
+				}
+
+				return alpha;
 			}
-		}*/
+		} else if (!maxNode) {
+			for (int move : aBoard.getMoves()) {
+				value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, true);
+
+				if (value < beta) {
+					beta = value;
+				}
+			}
+			return beta;
+		}
 
 		return -1;
 	}
