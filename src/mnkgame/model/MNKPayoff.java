@@ -22,12 +22,12 @@ public class MNKPayoff {
 
 		Mark myOpponent = MNKPayoff.getOpponent(myMark);
 
-		if (aBoard.longestLine(myMark) == aBoard.getWinLength()) {
-			return aBoard.longestLine(myMark);
+		if (aBoard.longestLine(myMark) >= aBoard.getWinLength()) {
+			return aBoard.longestLine(myMark) + 1;
 		}
 
-		if (aBoard.longestLine(myOpponent) == aBoard.getWinLength()) {
-			return aBoard.longestLine(myOpponent);
+		if (aBoard.longestLine(myOpponent) >= aBoard.getWinLength()) {
+			return -1 * (aBoard.longestLine(myOpponent) + 1);
 		}
 
 		return (aBoard.longestLine(myMark) - aBoard.longestLine(myOpponent));

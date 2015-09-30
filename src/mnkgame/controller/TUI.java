@@ -10,7 +10,7 @@ import mnkgame.model.MNKPayoff;
 
 /**
  * TUI for MNK algorithm
- * 
+ *
  * @author jcchurch
  * @version Fall 2015
  */
@@ -18,7 +18,7 @@ public class TUI {
 
 	/**
 	 * Begins the game.
-	 * 
+	 *
 	 * @param args
 	 *            CLI args
 	 */
@@ -57,12 +57,10 @@ public class TUI {
 			// Once you have finished Minimax, move to Alpha-Beta.
 			// Once you have finished Alpha-Beta, move to iterative deening
 
-			// int value = MNKMinimax.minimax(aGame.makeMove(move),
-			// aGame.whoMoves(), 2, false);
-			int value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 8, false);
-			// int value =
-			// MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move),
-			// aGame.whoMoves(), 0, 8, false);
+			int value = MNKMinimax.minimax(aGame.makeMove(move), aGame.whoMoves(), 2, false);
+
+			// int value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 8, false);
+			// int value = MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move), aGame.whoMoves(), 0, 8, false);
 
 			if (value > bestMoveScore) {
 				bestMoveScore = value;
