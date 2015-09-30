@@ -25,7 +25,7 @@ public class TUI {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-		MNKGame aGame = new MNKGame(5, 5, 3);
+		MNKGame aGame = new MNKGame(3, 3, 3);
 		boolean humanTurn = true;
 
 		while (!aGame.isGameOver() && aGame.getMoves().size() > 0) {
@@ -57,9 +57,12 @@ public class TUI {
 			// Once you have finished Minimax, move to Alpha-Beta.
 			// Once you have finished Alpha-Beta, move to iterative deening
 
-			int value = MNKMinimax.minimax(aGame.makeMove(move), aGame.whoMoves(), 2, false);
-			// int value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 0, 8, false);
-			// int value = MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move), aGame.whoMoves(), 0, 8, false);
+			// int value = MNKMinimax.minimax(aGame.makeMove(move),
+			// aGame.whoMoves(), 2, false);
+			int value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 8, false);
+			// int value =
+			// MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move),
+			// aGame.whoMoves(), 0, 8, false);
 
 			if (value > bestMoveScore) {
 				bestMoveScore = value;

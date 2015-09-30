@@ -25,6 +25,7 @@ public class MNKPayoff {
 		if (aBoard.longestLine(myMark) == aBoard.getWinLength()) {
 			return aBoard.longestLine(myMark);
 		}
+
 		if (aBoard.longestLine(myOpponent) == aBoard.getWinLength()) {
 			return aBoard.longestLine(myOpponent);
 		}

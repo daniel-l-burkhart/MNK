@@ -29,25 +29,25 @@ public class MNKMinimax {
 
 		if (depth == 0 || moves.size() == 0 || aBoard.isGameOver()) {
 			return MNKPayoff.payoff(aBoard, myMark);
-		}
-
-		if (maxNode) {
-			int bestValue = Integer.MAX_VALUE;
-			for (Integer move : moves) {
-				MNKGame nextBoard = aBoard.makeMove(move);
-				int value = minimax(nextBoard, myMark, depth - 1, false);
-				bestValue = Math.max(value, bestValue);
-				return bestValue;
-			}
 		} else {
-			int bestValue = Integer.MIN_VALUE;
-			for (Integer move : moves) {
-				int value = minimax(aBoard.makeMove(move), myMark, depth - 1, true);
-				bestValue = Math.min(value, bestValue);
-				return bestValue;
+
+			if (maxNode) {
+				int bestValue = Integer.MAX_VALUE;
+				for (Integer move : moves) {
+					MNKGame nextBoard = aBoard.makeMove(move);
+					int value = minimax(nextBoard, myMark, depth - 1, false);
+					bestValue = Math.max(value, bestValue);
+					return bestValue;
+				}
+			} else {
+				int bestValue = Integer.MIN_VALUE;
+				for (Integer move : moves) {
+					int value = minimax(aBoard.makeMove(move), myMark, depth - 1, true);
+					bestValue = Math.min(value, bestValue);
+					return bestValue;
+				}
 			}
 		}
-
 		return -1;
 	}
 }

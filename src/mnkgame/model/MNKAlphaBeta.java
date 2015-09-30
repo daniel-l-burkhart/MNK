@@ -30,53 +30,58 @@ public class MNKAlphaBeta {
 
 	public static int alphabetaIterativeDeepening(MNKGame aBoard, Mark myMark, int mindepth, int maxdepth,
 			boolean maxNode) {
-
+		int bestScore = Integer.MIN_VALUE;
+		
+		
 		return -1;
 	}
 
 	private static int alphaBetaRecursive(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
 			boolean maxNode) {
 
-		int value;
-
 		if (maxNode) {
+			alpha = alphaBetMaxNode(aBoard, myMark, alpha, beta, depth);
+			return alpha;
 
-			for (int move : aBoard.getMoves()) {
-				value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, false);
-
-				if (value > alpha) {
-					alpha = value;
-				}
-
-				return alpha;
-			}
 		} else if (!maxNode) {
-			for (int move : aBoard.getMoves()) {
-				value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, true);
-
-				if (value < beta) {
-					beta = value;
-				}
-			}
+			beta = alphaBetaMinNode(aBoard, myMark, alpha, beta, depth);
 			return beta;
 		}
 
 		return -1;
 	}
 
-	private static int alphaBetaMinNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
-			ArrayList<Integer> moves) {
+	
+	private static int alphaBetaMinNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth) {
+		int value;
+		for (int move : aBoard.getMoves()) {
+			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, true);
 
-		// TODO: Finish Alpha-Beta for Min Nodes
+			if (value <= alpha) {
+				return alpha;
+			}
 
-		return -1;
+			if (value < beta) {
+				beta = value;
+			}
+		}
+		return beta;
 	}
 
-	private static int alphaBetaMaxNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
-			ArrayList<Integer> moves) {
 
-		// TODO: Finish Alpha-Beta for Max Nodes
+	private static int alphaBetMaxNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth) {
+		int value;
+		for (int move : aBoard.getMoves()) {
+			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, false);
 
-		return -1;
+			if (value >= beta) {
+				return beta;
+			}
+
+			if (value > alpha) {
+				alpha = value;
+			}
+		}
+		return alpha;
 	}
 }

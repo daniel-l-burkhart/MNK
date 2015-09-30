@@ -1,12 +1,16 @@
 /**
  *
  */
-package mnkgame.model;
+package tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import mnkgame.model.MNKGame;
+import mnkgame.model.MNKPayoff;
+import mnkgame.model.Mark;
 
 /**
  * Testing the payoff function.

@@ -32,6 +32,7 @@ public class MNKGame {
 	 *            the win condition
 	 */
 	public MNKGame(int mwidth, int nheight, int kwinLength) {
+		
 		if (mwidth < 3) {
 			throw new IllegalArgumentException("m must be at least 3");
 		}
