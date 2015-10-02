@@ -54,18 +54,12 @@ public class TUI {
 		for (int move : moves) {
 
 			int value;
-
-			// TODO:
-			// For each algorithm below, implement and examine the results by
-			// playing a few games.
-			// Once you have finished Minimax, move to Alpha-Beta.
-			// Once you have finished Alpha-Beta, move to iterative deening
-
+			
 			value = MNKMinimax.minimax(aGame.makeMove(move), aGame.whoMoves(), 2, false);
 
-			value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 8, false);
+			//value = MNKAlphaBeta.alphabeta(aGame.makeMove(move), aGame.whoMoves(), 8, false);
 
-			value = MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move), aGame.whoMoves(), 0, 8, false);
+			//value = MNKAlphaBeta.alphabetaIterativeDeepening(aGame.makeMove(move), aGame.whoMoves(), 0, 8, false);
 
 			if (value > bestMoveScore) {
 				bestMoveScore = value;
