@@ -28,60 +28,125 @@ public class MNKAlphaBeta {
 				maxNode);
 	}
 
+	/**
+	 * Iterative deepening of the alpha beta search algorithm.
+	 * 
+	 * @param aBoard
+	 *            The current game board
+	 * @param myMark
+	 *            The current CPU player
+	 * @param mindepth
+	 *            The min depth
+	 * @param maxdepth
+	 *            the max depth
+	 * @param maxNode
+	 *            the max node
+	 * @return the alpha beta search of the best score.
+	 */
 	public static int alphabetaIterativeDeepening(MNKGame aBoard, Mark myMark, int mindepth, int maxdepth,
-			boolean maxNode) {
-		int bestScore = Integer.MIN_VALUE;
-		
-		
-		return -1;
+					boolean maxNode) {
+		int bestValue = 0;
+
+		ArrayList<Integer> moves = aBoard.getMoves();
+
+		if (moves.size() == 0 || aBoard.isGameOver()) {
+			return MNKPayoff.payoff(aBoard, myMark);
+		} else {
+
+			for (int move : moves) {
+				bestValue = MNKAlphaBeta.alphabeta(aBoard.makeMove(move), aBoard.whoMoves(), mindepth, false);
+				bestValue = runAlphaBetaSearchOnEachMove(aBoard, mindepth, maxdepth, bestValue, move);
+
+			}
+		}
+		return bestValue;
+	}
+
+	private static int runAlphaBetaSearchOnEachMove(MNKGame aBoard, int mindepth, int maxdepth, int bestValue,
+					int move) {
+
+		int value;
+		int alphaBetaBestVal = bestValue;
+		for (int depth = mindepth + 1; depth < maxdepth; depth++) {
+			value = MNKAlphaBeta.alphabeta(aBoard.makeMove(move), aBoard.whoMoves(), depth, false);
+
+			if (value > alphaBetaBestVal) {
+				alphaBetaBestVal = value;
+			}
+		}
+		return alphaBetaBestVal;
 	}
 
 	private static int alphaBetaRecursive(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth,
-			boolean maxNode) {
+					boolean maxNode) {
 
-		if (maxNode) {
-			alpha = alphaBetMaxNode(aBoard, myMark, alpha, beta, depth);
-			return alpha;
+		int alphaVal = alpha;
+		int betaVal = beta;
 
-		} else if (!maxNode) {
-			beta = alphaBetaMinNode(aBoard, myMark, alpha, beta, depth);
-			return beta;
+		ArrayList<Integer> moves = aBoard.getMoves();
+
+		if (depth == 0 || moves.size() == 0 || aBoard.isGameOver()) {
+			return MNKPayoff.payoff(aBoard, myMark);
+		} else {
+
+			if (maxNode) {
+				alphaVal = alphaBetMaxNode(aBoard, myMark, alphaVal, beta, depth);
+				return alphaVal;
+
+			} else if (!maxNode) {
+				betaVal = alphaBetaMinNode(aBoard, myMark, alphaVal, betaVal, depth);
+				return betaVal;
+			}
 		}
 
 		return -1;
 	}
 
-	
-	private static int alphaBetaMinNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth) {
-		int value;
-		for (int move : aBoard.getMoves()) {
-			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, true);
-
-			if (value <= alpha) {
-				return alpha;
-			}
-
-			if (value < beta) {
-				beta = value;
-			}
-		}
-		return beta;
-	}
-
-
 	private static int alphaBetMaxNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth) {
 		int value;
+		int alphaVal = alpha;
 		for (int move : aBoard.getMoves()) {
-			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, beta, depth - 1, false);
+
+			if (alpha >= beta) {
+				break;
+			}
+			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alphaVal, beta, depth - 1, false);
 
 			if (value >= beta) {
 				return beta;
 			}
 
-			if (value > alpha) {
-				alpha = value;
+			if (value > alphaVal) {
+				alphaVal = value;
 			}
 		}
-		return alpha;
+
+		return alphaVal;
 	}
+
+	private static int alphaBetaMinNode(MNKGame aBoard, Mark myMark, int alpha, int beta, int depth) {
+
+		int value;
+		int betaVal = beta;
+
+		for (int move : aBoard.getMoves()) {
+
+			if (alpha >= beta) {
+				break;
+			}
+
+			value = alphaBetaRecursive(aBoard.makeMove(move), myMark, alpha, betaVal, depth - 1, true);
+
+			if (value <= alpha) {
+				return alpha;
+			}
+
+			if (value < betaVal) {
+				betaVal = value;
+			}
+		}
+
+		return betaVal;
+	}
+
 }

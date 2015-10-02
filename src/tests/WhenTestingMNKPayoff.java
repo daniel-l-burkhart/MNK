@@ -18,14 +18,8 @@ import mnkgame.model.Mark;
  * @author dburkha1
  * @version Fall 2015
  */
-public class whenTestingMNKPayoff {
+public class WhenTestingMNKPayoff {
 
-	/**
-	 * @throws Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	/**
 	 * Test method for
@@ -98,8 +92,6 @@ public class whenTestingMNKPayoff {
 
 		assertEquals(0, MNKPayoff.payoff(aBoard.makeMove(1).makeMove(3).makeMove(5).makeMove(7), Mark.O));
 	}
-
-	// 051837
 
 	/**
 	 * 8
